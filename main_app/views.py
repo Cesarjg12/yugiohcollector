@@ -3,8 +3,8 @@ from .models import Yugioh
 
 # Create your views here.
 yugioh = [
-  {'name': 'Card', 'type': 'monster', 'description': 'furry little demon', 'stars': 3},
-  {'name': 'Card2', 'type': 'monster', 'description': 'has a hat', 'stars': 8},
+  {'name': 'Card', 'type': 'monster', 'description': 'A wizard with a staff', 'stars': 7},
+  {'name': 'Card2', 'type': 'monster', 'description': 'A black dragon', 'stars': 7},
  
 ]
 

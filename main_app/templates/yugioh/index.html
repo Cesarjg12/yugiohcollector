@@ -3,14 +3,14 @@
 
 <h1>Card List</h1>
 
-{% for card in cards %}
+{% for yugioh_card in yugioh %}
   <div class="card">
     <div class="card-content">
-      <span class="card-title">{{ yugioh.name }}</span>
-      <p>Type: {{ yugioh.type }}</p>
-      <p>Description: {{ yugioh.description }}</p>
-      {% if stars.age > 0 %}
-        <p>Stars: {{ stars.age }}</p>
+      <span class="card-title">{{ yugioh_card.name }}</span>
+      <p>Type: {{ yugioh_card.type }}</p>
+      <p>Description: {{ yugioh_card.description }}</p>
+      {% if yugioh_card.stars > 0 %}
+        <p>Stars: {{ yugioh_card.stars }}</p>
       {% else %}
         <p>Stars: Magic or Trap Card</p>
       {% endif %}
