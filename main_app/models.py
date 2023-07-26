@@ -7,13 +7,6 @@ class Yugioh(models.Model):
     description = models.TextField(max_length=250)
     stars = models.IntegerField()
 
-
-# y = Yugioh(name="Dark Magician", description='The ultimate wizard in terms of attack and defense.', stars=7)
-
-# # Access the dictionary representation of the object
-# y_dict = y.__dict__
-# print(y_dict)
-
 # Changing this instance method
 # does not impact the database, therefore
 # no makemigrations is necessary

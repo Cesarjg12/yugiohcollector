@@ -19,3 +19,13 @@ def yugioh_index(request):
   return render(request, 'yugioh/index.html', {
     'yugioh': yugioh
   })
+
+def yugioh_detail(request, yugioh_card_id):
+    try:
+        yugioh_card = Yugioh.objects.get(id=yugioh_card_id)
+    except Yugioh.DoesNotExist:
+        return render(request, 'yugioh/detail.html', {'error_message': 'Card does not exist.'})
+    
+    return render(request, 'yugioh/detail.html', {
+        'yugioh_card': yugioh_card
+    })
