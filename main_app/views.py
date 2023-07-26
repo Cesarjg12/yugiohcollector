@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Yugioh
 
 # Create your views here.
 yugioh = [
@@ -14,6 +15,7 @@ def about(request):
   return render(request, 'about.html')
 
 def yugioh_index(request):
+  yugioh = Yugioh.objects.all()
   return render(request, 'yugioh/index.html', {
     'yugioh': yugioh
   })
