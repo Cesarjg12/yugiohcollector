@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Yugioh
+from .models import Yugioh, Buffs
 from django.urls import reverse_lazy
+from .forms import BuffsForm 
 
 # Create your views here.
 yugioh = [
@@ -27,9 +28,20 @@ def yugioh_detail(request, yugioh_card_id):
         yugioh_card = Yugioh.objects.get(id=yugioh_card_id)
     except Yugioh.DoesNotExist:
         return render(request, 'yugioh/detail.html', {'error_message': 'Card does not exist.'})
-    
+
+    if request.method == 'POST':
+        buffs_form = BuffsForm(request.POST)
+        if buffs_form.is_valid():
+            buff = buffs_form.save(commit=False)
+            buff.yugioh = yugioh_card
+            buff.save()
+            return redirect('detail', yugioh_card_id=yugioh_card_id)
+    else:
+        buffs_form = BuffsForm()
+
     return render(request, 'yugioh/detail.html', {
-        'yugioh_card': yugioh_card
+        'yugioh_card': yugioh_card,
+        'buffs_form': buffs_form
     })
 
 class YugiohCreate(CreateView):
