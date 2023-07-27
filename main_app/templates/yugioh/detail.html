@@ -4,16 +4,19 @@
 <h1>Card Details</h1>
 
 <div class="card">
-  <div class="card">
     <div class="card-content">
       <span class="card-title">{{ yugioh_card.name }}</span>
       <p>Type: {{ yugioh_card.type }}</p>
-      <p>Description: {{ yugioh_card.description }}</p>
+      <p>Description: {{ yugioh_card.description|linebreaks }}</p>
       {% if yugioh_card.stars > 0 %}
         <p>Stars: {{ yugioh_card.stars }}</p>
       {% else %}
         <p>Stars: Magic or Trap Card</p>
       {% endif %}
+    </div>
+    <div class="card-action">
+      <a href="{% url 'Yugioh_update' yugioh_card.id %}">Edit</a>
+      <a href="{% url 'Yugioh_delete' yugioh_card.id %}">Delete</a>
     </div>
   </div>
 

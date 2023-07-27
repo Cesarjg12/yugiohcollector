@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Yugioh
 
 # Create your views here.
@@ -29,3 +30,15 @@ def yugioh_detail(request, yugioh_card_id):
     return render(request, 'yugioh/detail.html', {
         'yugioh_card': yugioh_card
     })
+
+class YugiohCreate(CreateView):
+  model = Yugioh
+  fields = '__all__'
+
+class YugiohUpdate(UpdateView):
+  model = Yugioh
+  fields = ['type', 'description', 'stars']
+
+class YugiohDelete(DeleteView):
+  model = Yugioh
+  success_url = '/yugioh'
