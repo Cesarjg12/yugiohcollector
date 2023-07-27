@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Yugioh
+from django.urls import reverse_lazy
 
 # Create your views here.
 yugioh = [
@@ -38,7 +39,9 @@ class YugiohCreate(CreateView):
 class YugiohUpdate(UpdateView):
   model = Yugioh
   fields = ['type', 'description', 'stars']
+  success_url = reverse_lazy('index') 
 
 class YugiohDelete(DeleteView):
-  model = Yugioh
-  success_url = '/yugioh'
+    model = Yugioh
+    success_url = reverse_lazy('index')
+    
