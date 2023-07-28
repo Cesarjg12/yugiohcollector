@@ -4,7 +4,7 @@
 <h1>Card List</h1>
 
 {% for yugioh_card in yugioh %}
-<a href="{% url 'detail' yugioh_card.id %}">
+<a href="{% url 'yugioh_detail' yugioh_card.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ yugioh_card.name }}</span>
