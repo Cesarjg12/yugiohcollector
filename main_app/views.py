@@ -104,8 +104,10 @@ def unassoc_deck(request, yugioh_card_id, deck_id):
     return redirect('yugioh_detail', yugioh_card_id=yugioh_card_id)
 
 def add_photo(request, yugioh_card_id):
+  print (os.environ['S3_BUCKET'])
   # photo-file maps to the "name" attr on the <input>
   photo_file = request.FILES.get('photo-file', None)
+  print (photo_file)
   if photo_file:
     s3 = boto3.client('s3')
     # Need a unique "key" (filename)
@@ -120,4 +122,4 @@ def add_photo(request, yugioh_card_id):
     except Exception as e:
       print('An error occurred uploading file to S3')
       print(e)
-  return redirect('detail', yugioh_card_id=yugioh_card_id)
+  return redirect('yugioh_detail', yugioh_card_id=yugioh_card_id)
