@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Yugioh, Buffs, Deck, Photo
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import BuffsForm 
 
 # Create your views here.
