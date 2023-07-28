@@ -9,6 +9,7 @@ urlpatterns = [
     path('yugioh/create/', views.YugiohCreate.as_view(), name='Yugioh_create'),
     path('yugioh/<int:pk>/update/', views.YugiohUpdate.as_view(), name='Yugioh_update'),
     path('yugioh/<int:pk>/delete/', views.YugiohDelete.as_view(), name='Yugioh_delete'),
+    path('yugioh/<int:yugioh_card_id>/add_photo/', views.add_photo, name='add_photo'),
     path('yugioh/<int:yugioh_card_id>/assoc_deck/<int:deck_id>/', views.assoc_deck, name='assoc_deck'),
     path('yugioh/<int:yugioh_card_id>/unassoc_deck/<int:deck_id>/', views.unassoc_deck, name='unassoc_deck'),
     path('deck/', views.DeckList.as_view(), name='deck_index'),

@@ -1,7 +1,10 @@
+import os
+import uuid
+import boto3
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Yugioh, Buffs, Deck
+from .models import Yugioh, Buffs, Deck, Photo
 from django.urls import reverse_lazy
 from .forms import BuffsForm 
 
@@ -99,3 +102,22 @@ def unassoc_deck(request, yugioh_card_id, deck_id):
 
     yugioh_card.deck.remove(deck)
     return redirect('yugioh_detail', yugioh_card_id=yugioh_card_id)
+
+def add_photo(request, yugioh_card_id):
+  # photo-file maps to the "name" attr on the <input>
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    # Need a unique "key" (filename)
+    # It needs to keep the same file extension
+    # of the file that was uploaded (.png, .jpeg, etc.)
+    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+    try:
+      bucket = os.environ['S3_BUCKET']
+      s3.upload_fileobj(photo_file, bucket, key)
+      url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+      Photo.objects.create(url=url, yugioh_card_id=yugioh_card_id)
+    except Exception as e:
+      print('An error occurred uploading file to S3')
+      print(e)
+  return redirect('detail', yugioh_card_id=yugioh_card_id)
