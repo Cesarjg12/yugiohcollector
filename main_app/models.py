@@ -7,13 +7,17 @@ EFFECTS = (
   ('S', 'Spell'),
   ('T', 'Trap'),
 )
-
+class Deck(models.Model):
+   name = models.CharField(max_length=50)
+   color = models.CharField(max_length=20)
+   
 # Create your models here.
 class Yugioh(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     stars = models.IntegerField()
+    deck = models.ManyToManyField(Deck)
 
 # Changing this instance method
 # does not impact the database, therefore
@@ -22,7 +26,7 @@ def __str__(self):
     return f'{self.name} ({self.id})'
 
 def get_absolute_url(self):
-    return reverse('detail', kwargs={'cat_id': self.id})
+    return reverse('detail', kwargs={'pk': self.id})
 
 class Buffs(models.Model):
   date = models.DateField()

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Deck Details</h1>
+
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ deck.name }}</span>
+        <p>Color: {{ deck.color }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'deck_update' deck.id %}">Edit</a>
+        <a href="{% url 'deck_delete' deck.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

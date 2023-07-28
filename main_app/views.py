@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Yugioh, Buffs
+from django.views.generic import ListView, DetailView
+from .models import Yugioh, Buffs, Deck
 from django.urls import reverse_lazy
 from .forms import BuffsForm 
 
@@ -56,4 +57,21 @@ class YugiohUpdate(UpdateView):
 class YugiohDelete(DeleteView):
     model = Yugioh
     success_url = reverse_lazy('index')
-    
+
+class DeckList(ListView):
+  model = Deck
+
+class DeckDetail(DetailView):
+  model = Deck
+
+class DeckCreate(CreateView):
+  model = Deck
+  fields = '__all__'
+
+class DeckUpdate(UpdateView):
+  model = Deck
+  fields = ['name', 'color']
+
+class DeckDelete(DeleteView):
+  model = Deck
+  success_url = '/deck'

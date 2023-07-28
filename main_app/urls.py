@@ -9,4 +9,9 @@ urlpatterns = [
     path('yugioh/create/', views.YugiohCreate.as_view(), name='Yugioh_create'),
     path('yugioh/<int:pk>/update/', views.YugiohUpdate.as_view(), name='Yugioh_update'),
     path('yugioh/<int:pk>/delete/', views.YugiohDelete.as_view(), name='Yugioh_delete'),
+    path('deck/', views.DeckList.as_view(), name='deck_index'),
+    path('deck/<int:pk>/', views.DeckDetail.as_view(), name='deck_detail'),
+    path('deck/create/', views.DeckCreate.as_view(), name='deck_create'),
+    path('deck/<int:pk>/update/', views.DeckUpdate.as_view(), name='deck_update'),
+    path('deck/<int:pk>/delete/', views.DeckDelete.as_view(), name='deck_delete'),
 ]
