@@ -58,10 +58,16 @@
                 A <span style="color: {{ deck.color }}">{{ deck.color }}</span> {{ deck.name }}
               </span>
             </div>
+            <div class="card-action">
+              <form action="{% url 'unassoc_deck' yugioh_card.id deck.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">Remove</button>
+              </form>
+            </div>
           </div>
         {% endfor %}
       {% else %}
-        <h5>No Deck 😿</h5>
+        <h5>No Decks 😿</h5>
       {% endif %}
     </div>
     <!-- Available deck will come after this line -->

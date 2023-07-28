@@ -75,3 +75,11 @@ class DeckUpdate(UpdateView):
 class DeckDelete(DeleteView):
   model = Deck
   success_url = '/deck'
+
+def assoc_deck(request, yugioh_card_id, deck_id):
+  yugioh.objects.get(id=yugioh_card_id).deck.add(deck_id)
+  return redirect('detail', yugioh_card_id=yugioh_card_id)
+
+def unassoc_deck(request, yugioh_card_id, deck_id):
+  yugioh.objects.get(id=yugioh_card_id).deck.remove(deck_id)
+  return redirect('detail', yugioh_card_id=yugioh_card_id)
