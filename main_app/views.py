@@ -64,7 +64,8 @@ def yugioh_detail(request, yugioh_card_id):
 
 class YugiohCreate(CreateView):
   model = Yugioh
-  fields = '__all__'
+  fields = ['name', 'type', 'description', 'stars']
+  success_url = reverse_lazy('index')
 
 class YugiohUpdate(UpdateView):
   model = Yugioh
