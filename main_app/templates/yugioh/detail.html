@@ -20,8 +20,8 @@
     </div>
   </div>
 </div>
-{% for photo in yugioh.photo_set.all %}
-  <img class="responsive-img card-panel" src="{{photo.url}}">
+{% for photo in photos %}
+  <img class="responsive-img card-panel" src="{{ photo.url }}">
 {% empty %}
   <div class="card-panel teal-text center-align">No Photos Uploaded</div>
 {% endfor %}
